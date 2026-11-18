@@ -52,19 +52,19 @@ def patrons():
         cursor = ((data.get("meta") or {}).get("pagination") or {}).get("cursors", {}).get("next")
         if not cursor:
             return sorted(names, key=str.lower)
-
-
+            
 patron_names = patrons()
 booster_names = boosters()
 
-plain = "Patrons: %s\n\nServer Boosters: %s\n" % (", ".join(patron_names), ", ".join(booster_names))
+plain = "\n".join(["Patrons:"] + patron_names + ["", "Server Boosters:"] + booster_names) + "\n"
+body = "<br>".join(
+    ["Patrons:"] + [html.escape(n) for n in patron_names]
+    + ["", "Server Boosters:"] + [html.escape(n) for n in booster_names]
+)
 page = (
     '<!DOCTYPE html><html><head><meta charset="utf-8"><style>'
     'html,body{margin:0;background:transparent;color:%s;font:14px "Courier New",monospace;line-height:1.5}'
-    '</style></head><body>Patrons: %s<br><br>Server Boosters: %s</body></html>\n'
-    % (TEXT_COLOR,
-       ", ".join(html.escape(n) for n in patron_names),
-       ", ".join(html.escape(n) for n in booster_names))
+    '</style></head><body>%s</body></html>\n' % (TEXT_COLOR, body)
 )
 open("credits.txt", "w", encoding="utf-8").write(plain)
 open("credits.html", "w", encoding="utf-8").write(page)
