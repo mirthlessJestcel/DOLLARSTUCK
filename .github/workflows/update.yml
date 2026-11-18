@@ -17,7 +17,7 @@ jobs:
         env:
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
           DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
-          DISCORD_ROLE_ID: "1572715650948931716"
+          DISCORD_ROLE_ID: "1529680588032835748"
           PATREON_TOKEN: ${{ secrets.PATREON_TOKEN }}
           PATREON_CAMPAIGN_ID: ${{ secrets.PATREON_CAMPAIGN_ID }}
       - run: |
